@@ -58,7 +58,7 @@ export const updateProduct = async (req, res) => {
     if (!product) return res.status(404).json({msg: "File Not Found..."});
     let fileName = "";
     if (req.files === null) {
-        fileName = Product.image;
+        fileName = product.image;
     } else {
         const file = req.files.file;
         const fileSize = file.data.length;
