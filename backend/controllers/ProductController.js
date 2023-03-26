@@ -63,7 +63,7 @@ export const updateProduct = async (req, res) => {
         const file = req.files.file;
         const fileSize = file.data.length;
         const ext = path.extname(file.name);
-        const fileName = file.md5 + ext;
+        fileName = file.md5 + ext;
         const allowedType = ['.png', '.jpg', '.jpeg'];
 
         if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({msg: "Invalid Images..."});
@@ -77,6 +77,7 @@ export const updateProduct = async (req, res) => {
             if (err) return res.status(500).json({msg: err.message});
         });
     }
+    console.log("image: "+fileName);
     const name = req.body.title;
     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     try {
